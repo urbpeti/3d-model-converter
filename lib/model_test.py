@@ -13,8 +13,8 @@ class ModelTest(TestCase):
                 [2.0, 2.0, 0.0],
             ],
             faces=[
-                [1, 2, 3],
-                [2, 1, 3],
+                [[1, 0, 0], [2, 0, 0], [3, 0, 0]],
+                [[2, 0, 0], [1, 0, 0], [3, 0, 0]],
             ]
         )
 
@@ -37,6 +37,42 @@ class ModelTest(TestCase):
 
         self.assertEqual(str(triangles), str(expected_triangles))
 
+    def test_get_triangles_return_trianlge_with_arg_normals(self):
+        model = Model(
+            vertices=[
+                [0.0, 2.0, 2.0],
+                [0.0, 0.0, 0.0],
+                [2.0, 0.0, 0.0],
+            ],
+            normals=[
+                [1.0, 2.0, 3.0],
+                [4.0, 5.0, 6.0],
+            ],
+            faces=[
+                [[1, 0, 1], [2, 0, 2], [3, 0, 2]],
+                [[2, 0, 1], [1, 0, 1], [3, 0, 1]],
+            ]
+        )
+
+        expected_triangles = [
+            [
+                [3.0, 4.0, 5.0],
+                [0.0, 2.0, 2.0],
+                [0.0, 0.0, 0.0],
+                [2.0, 0.0, 0.0],
+            ],
+            [
+                [1.0, 2.0, 3.0],
+                [0.0, 0.0, 0.0],
+                [0.0, 2.0, 2.0],
+                [2.0, 0.0, 0.0],
+            ]
+        ]
+
+        triangles = model.get_triangles()
+
+        self.assertEqual(str(triangles), str(expected_triangles))
+
     def test_get_triangles_return_fan_triangles(self):
         model = Model(
             vertices=[
@@ -46,7 +82,7 @@ class ModelTest(TestCase):
                 [2.0, 2.0, 0.0],
             ],
             faces=[
-                [1, 2, 3, 4],
+                [[1, 0, 0], [2, 0, 0], [3, 0, 0], [4, 0, 0]],
             ]
         )
 
