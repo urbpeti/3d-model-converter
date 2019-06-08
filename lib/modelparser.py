@@ -1,11 +1,7 @@
 import re
 from abc import ABC
 
-
-class Model:
-    def __init__(self, vectors, faces):
-        self._vectors = vectors
-        self._faces = faces
+from lib.model import Model
 
 
 class Parser:

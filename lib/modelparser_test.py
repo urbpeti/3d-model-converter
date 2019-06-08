@@ -1,7 +1,8 @@
 from unittest import TestCase
 from unittest.mock import MagicMock, mock_open, patch
 
-from lib.modelparser import Parser, Model, ObjParsingStrategy
+from lib.modelparser import Parser, ObjParsingStrategy
+from lib.model import Model
 
 
 class ParserTest(TestCase):
