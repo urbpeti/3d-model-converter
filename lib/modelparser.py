@@ -13,6 +13,11 @@ class ModelParser:
 
 
 class ObjParsingStrategy:
+    VERTEX_TYPE = 'v'
+    TEXTURE_TYPE = 'vt'
+    NORMAL_TYPE = 'vn'
+    FACE_TYPE = 'f'
+
     def __init__(self):
         self.vertices = []
         self.faces = []
@@ -28,16 +33,16 @@ class ObjParsingStrategy:
             for line in file.readlines():
                 parts = line.strip().split(' ')
                 dataType = parts[0]
-                if dataType == 'v':
+                if dataType == ObjParsingStrategy.VERTEX_TYPE:
                     vertex = self._create_vertex_from_line_parts(parts)
                     self.vertices.append(vertex)
-                elif dataType == 'vn':
+                elif dataType == ObjParsingStrategy.NORMAL_TYPE:
                     normal = self._create_normal_from_line_parts(parts)
                     self.normals.append(normal)
-                elif dataType == 'vt':
+                elif dataType == ObjParsingStrategy.TEXTURE_TYPE:
                     texture = self._create_texture_from_line_parts(parts)
                     self.textures.append(texture)
-                elif dataType == 'f':
+                elif dataType == ObjParsingStrategy.FACE_TYPE:
                     face = self._create_face_from_line_parts(parts)
                     self.faces.append(face)
 
