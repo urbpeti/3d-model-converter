@@ -1,14 +1,14 @@
 from unittest import TestCase
 from unittest.mock import MagicMock, mock_open, patch
 
-from lib.modelparser import Parser, ObjParsingStrategy
+from lib.modelparser import ModelParser, ObjParsingStrategy
 from lib.model import Model
 
 
-class ParserTest(TestCase):
+class ModelParserTest(TestCase):
     def setUp(self):
         self._parsing_strategy_mock = MagicMock()
-        self._parser = Parser(self._parsing_strategy_mock)
+        self._parser = ModelParser(self._parsing_strategy_mock)
 
     def test_parse_should_call_given_parser_strategy(self):
         path = 'dummy/path'

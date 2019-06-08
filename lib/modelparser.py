@@ -4,7 +4,7 @@ from abc import ABC
 from lib.model import Model
 
 
-class Parser:
+class ModelParser:
     def __init__(self, parsing_strategy):
         self._parsing_strategy = parsing_strategy
 

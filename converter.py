@@ -1,6 +1,6 @@
 import argparse
 from pathlib import Path
-from lib.modelparser import Parser, ObjParsingStrategy
+from lib.modelparser import ModelParser, ObjParsingStrategy
 from lib.modelwriter import ModelWriter, STLWritingStrategy
 
 if __name__ == "__main__":
@@ -11,7 +11,7 @@ if __name__ == "__main__":
                              type=str, default='test.stl')
     args = args_parser.parse_args()
 
-    parser = Parser(ObjParsingStrategy())
+    parser = ModelParser(ObjParsingStrategy())
     writer = ModelWriter(STLWritingStrategy())
 
     model = parser.parse(args.input)
