@@ -30,17 +30,17 @@ class STLWritingStrategy:
 
     def _triangle_to_bytes(self, triangle):
         triangles_bytes = b''
-        for vector in triangle:
-            triangles_bytes += self._vector_to_bytes(vector)
+        for vertex in triangle:
+            triangles_bytes += self._vertex_to_bytes(vertex)
 
         attr_byte_count = b'\x00\x00'
         triangles_bytes += attr_byte_count
 
         return triangles_bytes
 
-    def _vector_to_bytes(self, vector):
-        vector_bytes = b''
-        for coord in vector:
-            vector_bytes += pack('<f', coord)
+    def _vertex_to_bytes(self, vertex):
+        vertex_bytes = b''
+        for coord in vertex:
+            vertex_bytes += pack('<f', coord)
 
-        return vector_bytes
+        return vertex_bytes

@@ -14,11 +14,11 @@ class ParserTest(TestCase):
         path = 'dummy/path'
         self._parser.parse(path)
 
-        self._parsing_strategy_mock.assert_called_once_with(path)
+        self._parsing_strategy_mock.parse.assert_called_once_with(path)
 
     def test_parse_should_return_with_parser_strategy_returns(self):
         expectedModel = Model([], [])
-        self._parsing_strategy_mock.return_value = expectedModel
+        self._parsing_strategy_mock.parse.return_value = expectedModel
 
         path = 'dummy/path'
         model = self._parser.parse(path)
@@ -46,7 +46,7 @@ f 1 2 3 4
         with patch('lib.modelparser.open', mock_open(read_data=test_data)):
             model = self._strategy.parse('test')
 
-        expected_vectors = [
+        expected_vertices = [
             [0.0, 2.0, 2.0],
             [0.0, 0.0, 0.0],
             [2.0, 0.0, 0.0],
@@ -56,7 +56,7 @@ f 1 2 3 4
             [1, 2, 3, 4],
         ]
 
-        self.assertEqual(str(model._vectors), str(expected_vectors))
+        self.assertEqual(str(model._vertices), str(expected_vertices))
         self.assertEqual(model._faces, expected_faces)
 
     def test_parse_should_skip_lines_with_undefinied_startings(self):
@@ -65,10 +65,10 @@ f 1 2 3 4
         with patch('lib.modelparser.open', mock_open(read_data=test_data)):
             model = self._strategy.parse('test')
 
-        expected_vectors = [
+        expected_vertices = [
             [0.0, 2.0, 2.0],
         ]
         expected_faces = []
 
-        self.assertEqual(str(model._vectors), str(expected_vectors))
+        self.assertEqual(str(model._vertices), str(expected_vertices))
         self.assertEqual(model._faces, expected_faces)
